@@ -1,32 +1,13 @@
-const messages = [
-    "Are you sure, Théa?",
-    "Really sure??",
-    "Are you positive?",
-    "Théa please...",
-    "Just think about it!",
-    "If you say no, I will be really sad...",
-    "I will be very sad...",
-    "I will be very very very sad...",
-    "Ok fine, I will stop asking...",
-    "Just kidding, say yes please! ❤️"
-];
-
-let messageIndex = 0;
-
 function handleNoClick() {
     const noButton = document.querySelector('.no-button');
     const yesButton = document.querySelector('.yes-button');
 
-    // 1. Change the text to the next message in our list
-    noButton.textContent = messages[messageIndex];
-    messageIndex = (messageIndex + 1) % messages.length;
-
-    // 2. Make the Yes button grow
+    // 1. Make the Yes button grow slightly each time
     const currentSize = parseFloat(window.getComputedStyle(yesButton).fontSize);
-    yesButton.style.fontSize = `${currentSize * 1.5}px`;
+    yesButton.style.fontSize = `${currentSize * 1.3}px`;
 
-    // 3. TELEPORT: Move the No button to a random position
-    // This makes it impossible to click!
+    // 2. Teleport the No button to a random position
+    // We use "fixed" so it stays relative to the screen
     const x = Math.random() * (window.innerWidth - noButton.offsetWidth);
     const y = Math.random() * (window.innerHeight - noButton.offsetHeight);
 
@@ -36,5 +17,6 @@ function handleNoClick() {
 }
 
 function handleYesClick() {
+    // Takes her to the final celebration page
     window.location.href = "yes_page.html";
 }
